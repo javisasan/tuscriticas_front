@@ -6,56 +6,7 @@ import { useCallback} from 'react'
 import { Suspense } from 'react';
 import { createRoot } from 'react-dom/client';
 import { searchMovies } from '@/lib/apiClient';
-
-/// image={`https://media.themoviedb.org/t/p/w94_and_h141_bestv2/${movie.image}`}
-export function SearchMovieList(data: Array) {
-console.log(data.movieList.length);
-    return (
-        <ul>
-            {data.movieList.map((movie) => {
-                return (
-                     <SearchMovieItem
-                        id = {movie.id}
-                        title = {movie.title}
-                        originalTitle = {movie.originalTitle}
-                        image = {movie.image}
-                        published = {movie.published}
-                    />
-               )}
-            )}
-        </ul>
-    );
-}
-
-export function SearchMovieItem({
-    id,
-    title,
-    originalTitle,
-    published,
-    image
-}: {
-    id: string
-    title: string
-    originalTitle: string
-    published: string
-    image: string
-}) {
-    const imageUrl = `https://media.themoviedb.org/t/p/w94_and_h141_bestv2${image}`;
-    const publishYear = published?.substring(0,4);
-
-    return (
-        <li key={id}>
-            <div>
-                <img src={imageUrl} />
-                <div>
-                    <b>{title}</b>
-                    <br/>
-                    <small><i>{originalTitle} ({publishYear})</i></small>
-                </div>
-            </div>
-        </li>
-    );
-}
+import SearchMovieList from './searchMovieList';
 
 /*
 async function searchMovies(title: string) {
@@ -65,10 +16,8 @@ async function searchMovies(title: string) {
 }
 */
 
-
-
 // https://nextjs.org/learn/dashboard-app/adding-search-and-pagination
-export default function SearchMovieFromProvider() {
+export default function SearchMovieForm() {
   const handleSubmit = useCallback((e) => {
     e.preventDefault()
 
@@ -94,8 +43,8 @@ export default function SearchMovieFromProvider() {
         }
     ];
 
-    const content = document.getElementById("content");
-    const root = createRoot(content);
+    //const content = document.getElementById("content");
+    //const root = createRoot(content);
 
 /*
     root.render(<SearchMovieItem
@@ -106,7 +55,7 @@ export default function SearchMovieFromProvider() {
     />);
 */
 
-    root.render(<SearchMovieList movieList={results} />);
+    //root.render(<SearchMovieList movieList={results} />);
     /*
     results.map((item) => {
         console.log(item);
@@ -142,6 +91,9 @@ export default function SearchMovieFromProvider() {
                 <button type="submit">Submit</button>
             </form>
             <div id="content"></div>
+            <Suspense>
+                <SearchMovieList data={results} />
+            </Suspense>
         </div>
     );
 }

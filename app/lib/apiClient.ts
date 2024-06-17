@@ -16,12 +16,16 @@ console.log(res);
   return res.json()
 }
 
-export async function searchMovies(title: string) {
+export async function searchMovies(query: string) {
   // https://developer.mozilla.org/es/docs/Web/API/Fetch_API/Using_Fetch
   //const res = await fetch(`http://192.168.1.91:8080/getmovietest?title=${title}`, {mode: 'no-cors'});
   //return res.json()
 
-    const res = await fetch(`http://192.168.1.91:8080/getmovietest?title=${title}`, {mode: 'no-cors'}).then((res) => res.json());
+    if (query == '') {
+        return null;
+    }
+
+    const res = await fetch(`http://192.168.1.91:8080/getmovietest?title=${query}`, {mode: 'no-cors'}).then((res) => res.json());
 
     return res.data.map((movie) => ({
         id: movie.external_id,
@@ -31,14 +35,3 @@ export async function searchMovies(title: string) {
         published: movie.release_date
     }));
 }
-
-/*
-export async function blabla(slug: string) {
-    const posts = await fetch('http://192.168.1.91:8080/movie/' + slug).then((res) => res.json());
-
-    return posts.map((post) => ({
-        slug: post.slug,
-        overview: post.overview
-    }));
-}
-*/
