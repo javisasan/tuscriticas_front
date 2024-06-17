@@ -1,21 +1,5 @@
 import Link from 'next/link';
-
-/*
-export async function blabla(slug: string) {
-    const posts = await fetch('http://192.168.1.91:8080/movie/' + slug).then((res) => res.json());
-
-    return posts.map((post) => ({
-        slug: post.slug,
-        overview: post.overview
-    }));
-}
-*/
-
-async function getMovie(slug: string) {
-  const res = await fetch(`http://192.168.1.91:8080/movie/${slug}`, {cache: "no-store"})
-console.log(res);
-  return res.json()
-}
+import { getMovie } from '@/lib/apiClient';
 
 export default async function Prueba({ params }: { params: { slug: string } }) {
 

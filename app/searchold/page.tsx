@@ -8,7 +8,17 @@ async function searchMovies(title: string) {
 }
 
 // https://nextjs.org/learn/dashboard-app/adding-search-and-pagination
-export default function SearchMovie() {
+export default async function SearchMovie({
+  searchParams,
+}: {
+  searchParams?: {
+    query?: string;
+    page?: string;
+  };
+}) {
+    const query = searchParams?.query || '';
+    const currentPage = Number(searchParams?.page) || 1;
+
     return (
         <div>
             <Link href="/">&lt; Back</Link>

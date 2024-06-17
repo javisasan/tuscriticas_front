@@ -1,15 +1,6 @@
 import Image from "next/image";
 import Link from 'next/link';
-
-async function getLatestMovies() {
-    const movies = await fetch('http://192.168.1.91:8080/latest', {cache: "no-store"}).then((res) => res.json());
-    
-    return movies.map((movie, i) => ({
-        slug: movie.slug,
-        title: movie.title,
-        thumb: movie.rawImage
-    }));
-}
+import { getLatestMovies } from "./lib/apiClient";
 
 export default async function Home() {
     const latestMoviesData = getLatestMovies();

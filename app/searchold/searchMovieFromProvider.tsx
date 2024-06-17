@@ -5,19 +5,21 @@ import { useSearchParams } from 'next/navigation'
 import { useCallback} from 'react'
 import { Suspense } from 'react';
 import { createRoot } from 'react-dom/client';
-import { searchMovies } from './page.tsx';
+import { searchMovies } from '@/lib/apiClient';
 
 /// image={`https://media.themoviedb.org/t/p/w94_and_h141_bestv2/${movie.image}`}
 export function SearchMovieList(data: Array) {
+console.log(data.movieList.length);
     return (
         <ul>
             {data.movieList.map((movie) => {
                 return (
                      <SearchMovieItem
-                        title={movie.title}
-                        originalTitle={movie.originalTitle}
-                        image={movie.image}
-                        published={movie.published}
+                        id = {movie.id}
+                        title = {movie.title}
+                        originalTitle = {movie.originalTitle}
+                        image = {movie.image}
+                        published = {movie.published}
                     />
                )}
             )}
@@ -26,11 +28,13 @@ export function SearchMovieList(data: Array) {
 }
 
 export function SearchMovieItem({
+    id,
     title,
     originalTitle,
     published,
     image
 }: {
+    id: string
     title: string
     originalTitle: string
     published: string
@@ -40,14 +44,16 @@ export function SearchMovieItem({
     const publishYear = published?.substring(0,4);
 
     return (
-        <div>
-            <img src={imageUrl} />
+        <li key={id}>
             <div>
-                <b>{title}</b>
-                <br/>
-                <small><i>{originalTitle} ({publishYear})</i></small>
+                <img src={imageUrl} />
+                <div>
+                    <b>{title}</b>
+                    <br/>
+                    <small><i>{originalTitle} ({publishYear})</i></small>
+                </div>
             </div>
-        </div>
+        </li>
     );
 }
 
@@ -67,21 +73,30 @@ export default function SearchMovieFromProvider() {
     e.preventDefault()
 
     //const pepe = fetch(`http://192.168.1.91:8080/getmovietest?title=${title}`, {cache: "no-store"}).then((res) => res.json())
+
+
+    const results = searchMovies('akira');
+    //console.log(results);
     
+    
+    /*
     const results = [
         {
+            key: 'asdf',
             title: "Akira 1",
             originalTitle: 'Akirakun',
             image: '/vjPt8HYymLOkRv82x9JwVO7M2a5.jpg',
             published: '2022-12-05'
         },
         {
+            key: 'fdfdf',
             title: "Akira 2",
             originalTitle: 'Otra Akira',
             image: '/jU0gw5z6JrazhGOh4UfULKqt268.jpg',
             published: '2024-08-12'
         }
     ];
+    */
 
     const content = document.getElementById("content");
     const root = createRoot(content);
