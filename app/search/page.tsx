@@ -2,7 +2,7 @@ import Link from 'next/link';
 import Search from './search';
 import SearchMovieList from './searchMovieList';
 //import SearchMovieTable from './searchMovieTable';
-import { searchMovies } from '@/app/lib/apiClient';
+import { searchMoviesFromProvider } from '@/app/lib/apiClient';
 import { Suspense } from 'react';
 
 /*
@@ -25,7 +25,7 @@ export default async function Page({
     const query = searchParams?.query || '';
     const currentPage = Number(searchParams?.page) || 1;
 
-    const movieList = await searchMovies(query);
+    const movieList = await searchMoviesFromProvider(query);
 
     return (
         <div>
