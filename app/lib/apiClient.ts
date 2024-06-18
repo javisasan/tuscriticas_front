@@ -12,7 +12,6 @@ export async function getLatestMovies() {
 
 export async function getMovie(slug: string) {
   const res = await fetch(`http://192.168.1.91:8080/movie/${slug}`, {cache: "no-store"})
-console.log(res);
   return res.json()
 }
 
@@ -34,4 +33,9 @@ export async function searchMoviesFromProvider(query: string) {
         image: movie.image,
         published: movie.release_date
     }));
+}
+
+export async function importMovieFromProvider(providerId: string) {
+  const res = await fetch(`http://192.168.1.91:8080/importmovie?id=${providerId}`, {cache: "no-store"})
+  return res.json()
 }

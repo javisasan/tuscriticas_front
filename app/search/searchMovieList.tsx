@@ -39,15 +39,15 @@ export function SearchMovieItem({
     const publishYear = published?.substring(0,4);
 
     return (
-        <li key={id}>
-            <div>
+        <div>
+            <Link href={`/import/${id}`}>
                 <img src={imageUrl} />
-                <div>
-                    <b>{title}</b>
-                    <br/>
-                    <small><i>{originalTitle} ({publishYear})</i></small>
-                </div>
+            </Link>
+            <div>
+                <b>{title}</b>
+                <br/>
+                <small><i>{originalTitle} ({publishYear})</i></small>
             </div>
-        </li>
+        </div>
     );
 }

@@ -1,26 +1,17 @@
 import Link from 'next/link';
 import Search from './search';
 import SearchMovieList from './searchMovieList';
-//import SearchMovieTable from './searchMovieTable';
 import { searchMoviesFromProvider } from '@/app/lib/apiClient';
 import { Suspense } from 'react';
 
-/*
-async function searchMovies(title: string) {
-  // https://developer.mozilla.org/es/docs/Web/API/Fetch_API/Using_Fetch
-  const res = await fetch(`http://192.168.1.91:8080/getmovietest?title=${title}`, {mode: 'no-cors'});
-  return res.json()
-}
-*/
-
 // https://nextjs.org/learn/dashboard-app/adding-search-and-pagination
 export default async function Page({
-    searchParams,
+    searchParams
 }: {
     searchParams?: {
         query?: string;
         page?: string;
-    };
+    }
 }) {
     const query = searchParams?.query || '';
     const currentPage = Number(searchParams?.page) || 1;
