@@ -13,7 +13,7 @@ export default async function Prueba({ params }: { params: { slug: string } }) {
             <br />
             <h2>{movie.title}</h2>
             <h4><i>{movie.originalTitle} ({movie.releaseDate.substring(0, 4)})</i></h4>
-            <img src={movie.profileImage} />
+            <img src={`http://192.168.1.91:8080/${movie.profileImage}`} />
             <p>{movie.overview}</p>
         </div>
     );

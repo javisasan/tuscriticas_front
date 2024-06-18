@@ -6,7 +6,7 @@ export async function getLatestMovies() {
     return movies.map((movie, i) => ({
         slug: movie.slug,
         title: movie.title,
-        thumb: movie.rawImage
+        thumb: movie.profileImage
     }));
 }
 

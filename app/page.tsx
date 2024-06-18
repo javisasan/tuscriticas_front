@@ -17,7 +17,7 @@ export default async function Home() {
                         <Link href={`/movie/${movie.slug}`}>
                             {movie.title}
                             <br/>
-                            <img src={`https://media.themoviedb.org/t/p/w94_and_h141_bestv2/${movie.thumb}`} />
+                            <img src={`http://192.168.1.91:8080/${movie.thumb}`} width="94" height="141" />
                         </Link>
                     </li>
                 )
