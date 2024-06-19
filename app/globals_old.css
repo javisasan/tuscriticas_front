@@ -9,42 +9,21 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  /*
   :root {
     --foreground-rgb: 255, 255, 255;
     --background-start-rgb: 0, 0, 0;
     --background-end-rgb: 0, 0, 0;
   }
-  */
 }
 
 body {
-}
-
-.navbar {
-    color: #9d9d9d;
-    background-color: #222;
-    border-color: #080808;
-    padding: 15px 15px 15px 15px;
-    height: 50px;
-}
-
-.navbar > div {
-    display: inline-block;
-}
-
-div .align-left {
-    float: left;
-}
-
-div .align-right {
-    float: right;
-}
-
-.searchbox {
-    padding-left: 5px;
-    border-radius: 5px;
-    color: #333;
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
 }
 
 @layer utilities {
