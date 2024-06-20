@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from 'next/link';
+import SearchBox from './searchBox';
 
 export default function Header() {
     return (
@@ -18,9 +19,7 @@ export default function Header() {
                     />
                 </Link>
             </div>
-            <div className="align-right">
-<input type="text" placeholder="Search..." class="searchbox" />
-            </div>
+            <SearchBox />
         </div>
     );
 }
