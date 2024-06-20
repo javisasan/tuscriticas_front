@@ -29,7 +29,7 @@ export async function searchMoviesFromProvider(query: string) {
         return null;
     }
 
-    const res = await fetch(`${serverHost}/getmovietest?title=${query}`, {mode: 'no-cors'}).then((res) => res.json());
+    const res = await fetch(`${serverHost}/search/provider?title=${query}`, {cache: "no-store", mode: 'no-cors'}).then((res) => res.json());
 
     return res.data.map((movie) => ({
         id: movie.external_id,

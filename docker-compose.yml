@@ -7,8 +7,9 @@ services:
     ports:
       - "80:3000"
     # Uncomment volumes section for development
-    #volumes:
-    #  - "./:/app"
+    # Then change Dockerfile to entrypoint and run npm install inside container
+    volumes:
+      - "./:/app"
     environment:
       MYSQL_HOST: db
       MYSQL_USER: root
