@@ -40,7 +40,7 @@ export function SearchMovieItem({
 
     return (
         <div>
-            <Link href={`/import/${id}`}>
+            <Link href={`/search/import/${id}`}>
                 <img src={imageUrl} />
             </Link>
             <div>

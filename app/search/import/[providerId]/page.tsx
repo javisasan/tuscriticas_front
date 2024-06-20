@@ -2,7 +2,7 @@ import { importMovieFromProvider } from "@/app/lib/apiClient";
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 
-export async function importMovie(providerId: slug) {
+async function importMovie(providerId: string) {
     const result = await importMovieFromProvider(providerId);
     
     revalidatePath('/');

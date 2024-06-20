@@ -22,6 +22,10 @@ help:
 dev:
 	@docker compose up -d
 
+npm:
+	@echo "Installing npm packages..."
+	@docker exec $(CONTAINER) npm install
+
 nodev:
 	@docker compose down
 
@@ -30,3 +34,12 @@ shell:
 
 test:
 	@docker exec $(CONTAINER) php bin/phpunit --stop-on-failure
+
+prod:
+	@docker compose up -d
+	if [ ! -d "node_modules" ]; then \
+	    make npm; \
+	fi
+	@echo "== Starging server... ="
+	@docker exec $(CONTAINER) npm run build
+	@docker exec $(CONTAINER) npm run start

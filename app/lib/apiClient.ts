@@ -12,6 +12,24 @@ export async function getLatestMovies() {
     }));
 }
 
+export async function searchMovies(query: string) {
+    const serverHost = process.env.SERVER_API_HOST;
+
+    if (query == '') {
+        return [];
+    }
+
+    const res = await fetch(`${serverHost}/search?title=${query}`, {cache: "no-store", mode: 'no-cors'}).then((res) => res.json());
+
+    return res.map((movie) => ({
+        slug: movie.slug,
+        title: movie.title,
+        year: movie.year,
+        image: `${serverHost}/${movie.image}`,
+        averageRate: movie.averageRate,
+    }));
+}
+
 export async function getMovie(slug: string) {
     const serverHost = process.env.SERVER_API_HOST;
 

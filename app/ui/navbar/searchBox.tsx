@@ -1,21 +1,36 @@
 'use client'
 
-import Link from 'next/link';
+import SearchList from './searchList';
+import { useDebouncedCallback } from 'use-debounce';
+import { search } from './actions/search';
+import React, { useState } from 'react';
 
 export default function SearchBox() {
+    const [movies, setMovies] = React.useState(0);
+
+    const handleSearch = useDebouncedCallback(async (term) => {
+        const list = document.getElementById("searchlist");
+        if (term.length > 0) {
+            const result = await search(term);
+            setMovies(result);
+            list.style.display = "block";
+        } else {
+            list.style.display = "none";
+        }
+    }, 300);
+
     return (
         <div className="float-right">
-            <input type="text" placeholder="Search..." class="searchbox" />
-            <div>
-                <div className="searchBoxItem">
-                    <div className="float-left">
-                        <img src='http://192.168.1.91:8080/images/movie/profile/s/rK7LafXBhHKjALYOT3jRUTlFdpk.jpg' className="searchBoxThumb" />
-                    </div>
-                    <div className="float-left">
-                        Una peli cualquiera para ver
-                    </div>
-                </div>
-            </div>
+            <input
+                type="text"
+                placeholder="Search..."
+                className="searchbox"
+                id="searchbox"
+                onChange={(e) => {
+                    handleSearch(e.target.value);
+                }}
+            />
+            <SearchList movies={movies} />
         </div>
     );
 }
