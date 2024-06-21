@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from 'next/link';
-import SearchBox from './searchBox';
+import SearchBox from './search/searchBox';
 
 export default function Header() {
     return (
