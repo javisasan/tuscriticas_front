@@ -7,8 +7,11 @@ import React, { useState } from 'react';
 
 export default function SearchBox() {
     const [movies, setMovies] = React.useState(0);
+    const [term, setTerm] = React.useState(0);
+    let searchTerm = '';
 
     const handleSearch = useDebouncedCallback(async (term) => {
+        setTerm(term);
         const list = document.getElementById("searchlist");
         if (term.length > 0) {
             const result = await search(term);
@@ -30,7 +33,7 @@ export default function SearchBox() {
                     handleSearch(e.target.value);
                 }}
             />
-            <SearchList movies={movies} />
+            <SearchList movies={movies} term={term} />
         </div>
     );
 }

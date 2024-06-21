@@ -8,8 +8,8 @@ export default async function Home() {
 
   return (
     <div>
-        <div><Link href="/search">Search</Link></div>
-        <h2>Movie List: {latestMovies.length} movies</h2>
+        <h1>Movie List: {latestMovies.length} movies</h1>
+        <br/>
         <ul>
             {latestMovies.map((movie) => {
                 return (

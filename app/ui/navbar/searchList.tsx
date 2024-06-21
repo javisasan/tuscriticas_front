@@ -3,6 +3,7 @@
 import Link from 'next/link';
 
 export default function SearchList(props) {
+    console.log(props);
     const movieSelected = function() {
         const input = document.getElementById("searchbox");
         input.value = '';
@@ -31,7 +32,7 @@ export default function SearchList(props) {
                 )
             })}
             <div>
-                <a href='/search'>Search</a>
+                <a href={`/search?query=${props.term}`}>Search</a>
             </div>
         </div>
     );
