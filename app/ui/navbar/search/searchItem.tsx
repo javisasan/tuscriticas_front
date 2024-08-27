@@ -14,7 +14,7 @@ export default function SearchItem(props) {
         <Link href={`/movie/${props.movie.slug}`} onClick={movieSelected}>
             <div className="searchBoxItem">
                 <div className="float-left">
-                    <img src={props.movie.image} className="searchBoxThumb" />
+                    <img src={props.movie.profileImage} className="searchBoxThumb" />
                 </div>
                 <div className="float-left">{props.movie.title}</div>
             </div>

@@ -1,14 +1,23 @@
 'use server'
 
+import { Movie } from '@/app/lib/definitions';
+
 export async function getLatestMovies() {
     const serverHost = process.env.SERVER_API_HOST;
 
     const movies = await fetch(`${serverHost}/latest`, {cache: "no-store"}).then((res) => res.json());
     
+    /*
     return movies.map((movie, i) => ({
         slug: movie.slug,
         title: movie.title,
         thumb: movie.profileImage
+    }));
+   */
+    return movies.map((movie: {slug: string, title: string, profileImage: string}) => (<Movie>{
+        slug: movie.slug,
+        title: movie.title,
+        profileImage: movie.profileImage
     }));
 }
 
@@ -25,7 +34,7 @@ export async function searchMovies(query: string) {
         slug: movie.slug,
         title: movie.title,
         year: movie.year,
-        image: `${serverHost}/${movie.image}`,
+        profileImage: `${serverHost}/${movie.image}`,
         averageRate: movie.averageRate,
     }));
 }
