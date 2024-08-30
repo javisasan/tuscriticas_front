@@ -48,7 +48,7 @@ export async function getMovie(slug: string) {
 
 export async function searchMoviesFromProvider(query: string) {
   // https://developer.mozilla.org/es/docs/Web/API/Fetch_API/Using_Fetch
-  //const res = await fetch(`http://192.168.1.91:8080/getmovietest?title=${title}`, {mode: 'no-cors'});
+  //const res = await fetch(`${serverHost}/getmovietest?title=${title}`, {mode: 'no-cors'});
   //return res.json()
     const serverHost = process.env.SERVER_API_HOST;
 
